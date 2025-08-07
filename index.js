@@ -13,6 +13,10 @@ app.get('/news', (req, res) => {
   const articles = db.prepare('SELECT * FROM articles ORDER BY pubDate DESC').all();
   res.json(articles);
 });
+app.get('/', (req, res) => {
+  res.send('🟢 GoalsRush backend is running');
+});
+
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
