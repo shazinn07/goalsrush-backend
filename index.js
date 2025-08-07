@@ -1,8 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 const fetchNews = require('./fetchNews');
 const db = require('./db');
 const cron = require('node-cron');
 const app = express();
+app.use(cors());
 const PORT = process.env.PORT || 3000;
 
 // Fetch every 40 mins
