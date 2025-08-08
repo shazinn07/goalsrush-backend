@@ -47,9 +47,17 @@ async function fetchAllFeeds() {
           const firstImg = $('img').first();
           if (firstImg) imageUrl = firstImg.attr('src');
         }
+        
+if (!imageUrl) {
+  console.log(`⛔ Skipping: "${item.title}" — No image found.`);
+  continue;
+}
+
 
         console.log(`Title: ${item.title}`);
   console.log(`Image URL: ${imageUrl || 'No image found'}`);
+
+
 
         // Extract plain text content snippet
         const contentText = $('p').text().slice(0, 500);
