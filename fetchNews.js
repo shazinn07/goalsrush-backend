@@ -16,6 +16,17 @@ const feeds = [
   { url: 'https://www.transfermarkt.com/rss/news', source: 'Transfermarkt' },
   { url: 'https://www.football-italia.net/rss.xml', source: 'Football Italia' },
   { url: 'https://www.caughtoffside.com/feed/', source: 'CaughtOffside (Rumours & Opinions)' },
+  { url: 'https://www.90min.com/rss/global', source: '90min Global' },
+{ url: 'https://talksport.com/rss/football', source: 'TalkSport Football' },
+{ url: 'https://www.football365.com/feed', source: 'Football365' },
+{ url: 'https://metro.co.uk/sport/football/feed/', source: 'Metro Football' },
+{ url: 'https://www.sportsmole.co.uk/rss/football.rss', source: 'Sports Mole' },
+{ url: 'https://www.bundesliga.com/en/news/rss', source: 'Bundesliga.com' },
+{ url: 'https://www.dailystar.co.uk/sport/football/?service=rss', source: 'Daily Star Football' },
+{ url: 'https://www.mirror.co.uk/sport/football/?service=rss', source: 'Mirror Football' },
+{ url: 'https://en.as.com/rss/futbol/primera.xml', source: 'AS English' },
+{ url: 'https://www.gazzetta.it/rss/Calcio.xml', source: 'Gazzetta Calcio' },
+
 
   // New replacements:
   { url: 'https://www.fourfourtwo.com/rss', source: 'FourFourTwo' },           // Features, analysis, transfers
