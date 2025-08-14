@@ -1,4 +1,3 @@
-const axios = require('axios');
 const Parser = require('rss-parser');
 const cheerio = require('cheerio');
 const db = require('./db');
@@ -72,12 +71,7 @@ if (!imageUrl) {
 
 
         // Extract plain text content snippet
-        // Fetch full article HTML
-// Extract only a small snippet (first 300 characters) to save space
-let snippet = $('p').text().replace(/\s+/g, ' ').trim().slice(0, 500);
-if (!snippet) snippet = item.title; // fallback if no paragraph text
-
-
+        const contentText = $('p').text().slice(0, 500);
 
         db.prepare(`
           INSERT OR IGNORE INTO articles (title, link, source, pubDate, content, imageUrl)
@@ -87,7 +81,7 @@ if (!snippet) snippet = item.title; // fallback if no paragraph text
           item.link,
           feed.source,
           item.pubDate,
-          snippet,
+          contentText,
           imageUrl
         );
       }
