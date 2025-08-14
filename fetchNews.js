@@ -73,15 +73,10 @@ if (!imageUrl) {
 
         // Extract plain text content snippet
         // Fetch full article HTML
-let fullContent = '';
-try {
-  const res = await axios.get(item.link);
-  fullContent = res.data; // store full HTML
-} catch (err) {
-  console.error(`❌ Failed to fetch full article for "${item.title}"`, err.message);
-  // fallback to snippet if fetching fails
-  fullContent = $('p').text();
-}
+// Extract only a small snippet (first 300 characters) to save space
+let snippet = $('p').text().replace(/\s+/g, ' ').trim().slice(0, 500);
+if (!snippet) snippet = item.title; // fallback if no paragraph text
+
 
 
         db.prepare(`
@@ -92,7 +87,7 @@ try {
           item.link,
           feed.source,
           item.pubDate,
-          fullContent,
+          snippet,
           imageUrl
         );
       }
