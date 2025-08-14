@@ -1,3 +1,4 @@
+const axios = require('axios');
 const Parser = require('rss-parser');
 const cheerio = require('cheerio');
 const db = require('./db');
@@ -71,7 +72,17 @@ if (!imageUrl) {
 
 
         // Extract plain text content snippet
-        const contentText = $('p').text().slice(0, 500);
+        // Fetch full article HTML
+let fullContent = '';
+try {
+  const res = await axios.get(item.link);
+  fullContent = res.data; // store full HTML
+} catch (err) {
+  console.error(`❌ Failed to fetch full article for "${item.title}"`, err.message);
+  // fallback to snippet if fetching fails
+  fullContent = $('p').text();
+}
+
 
         db.prepare(`
           INSERT OR IGNORE INTO articles (title, link, source, pubDate, content, imageUrl)
@@ -81,7 +92,7 @@ if (!imageUrl) {
           item.link,
           feed.source,
           item.pubDate,
-          contentText,
+          fullContent,
           imageUrl
         );
       }
