@@ -26,6 +26,14 @@ const feeds = [
 { url: 'https://www.mirror.co.uk/sport/football/?service=rss', source: 'Mirror Football' },
 { url: 'https://en.as.com/rss/futbol/primera.xml', source: 'AS English' },
 { url: 'https://www.gazzetta.it/rss/Calcio.xml', source: 'Gazzetta Calcio' },
+{ url: 'https://www.football365.com/feed', source: 'Football365' },
+{ url: 'https://metro.co.uk/sport/football/feed/', source: 'Metro Football' },
+{ url: 'https://www.fourfourtwo.com/rss', source: 'FourFourTwo' },
+{ url: 'https://www.90min.com/rss', source: '90min' },
+{ url: 'https://www.goal.com/en/feeds/news', source: 'Goal' },
+{ url: 'https://www.soccerbible.com/feed/', source: 'SoccerBible' },
+{ url: 'https://www.soccer.com/rss', source: 'Soccer.com' },
+
 
 
   // New replacements:
