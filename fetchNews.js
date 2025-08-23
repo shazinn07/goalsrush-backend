@@ -33,6 +33,13 @@ const feeds = [
 { url: 'https://www.goal.com/en/feeds/news', source: 'Goal' },
 { url: 'https://www.soccerbible.com/feed/', source: 'SoccerBible' },
 { url: 'https://www.soccer.com/rss', source: 'Soccer.com' },
+{ url: 'https://www.footyheadlines.com/feeds/posts/default', source: 'Footy Headlines' },
+{ url: 'https://www.soccercleats101.com/feed/', source: 'SoccerCleats101' },
+{ url: 'https://www.prodirectsoccer.com/blog/feed/', source: 'Pro Direct Soccer Blog' },
+{ url: 'https://www.fourfourtwo.com/gear/rss', source: 'FourFourTwo Gear' },
+{ url: 'https://www.soccerbible.com/feed/', source: 'SoccerBible' },
+{ url: 'https://www.prodirectsoccer.com/bootroom/feed/', source: 'Pro:Direct Bootroom' },
+{ url: 'https://www.whoateallthepies.tv/rss/', source: 'Who Ate All The Pies' },
 
 
 
