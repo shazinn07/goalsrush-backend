@@ -1,6 +1,8 @@
 const Parser = require('rss-parser');
 const cheerio = require('cheerio');
 const db = require('./db');
+const crypto = require('crypto'); // for generating unique IDs
+
 
 const parser = new Parser({
   customFields: {
@@ -53,6 +55,8 @@ async function fetchAllFeeds() {
     try {
       const data = await parser.parseURL(feed.url);
       for (const item of data.items) {
+          const id = crypto.createHash('md5').update(item.link).digest('hex');
+
         // Load content HTML to parse description images
         const $ = cheerio.load(item.content || item['content:encoded'] || '');
         
@@ -83,19 +87,23 @@ if (!imageUrl) {
 
 
         // Extract plain text content snippet
-        const contentText = $('p').text().slice(0, 500);
+      // Replace the above line with this
+const fullContent = $('body').html() || '';
+const cleanedContent = fullContent.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '');
 
-        db.prepare(`
-          INSERT OR IGNORE INTO articles (title, link, source, pubDate, content, imageUrl)
-          VALUES (?, ?, ?, ?, ?, ?)
-        `).run(
-          item.title,
-          item.link,
-          feed.source,
-          item.pubDate,
-          contentText,
-          imageUrl
-        );
+      db.prepare(`
+  INSERT OR IGNORE INTO articles (id, title, link, source, pubDate, content, imageUrl)
+  VALUES (?, ?, ?, ?, ?, ?, ?)
+`).run(
+  id,
+  item.title,
+  item.link,
+  feed.source,
+  item.pubDate,
+  cleanedContent,  // use the new cleaned HTML content
+  imageUrl
+);
+
       }
       console.log(`✅ Fetched and saved from ${feed.source}`);
     } catch (err) {
